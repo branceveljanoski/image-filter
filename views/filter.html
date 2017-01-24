@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <title>
+        Image filter
+    </title>
+    <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+    <style>
+        body {
+            text-align: center;
+            background-color: #4791D2;
+            margin: 150px;
+        }
+    </style>
+
+    <script>
+function grayscale() {
+    // Standard syntax
+    var value = document.getElementById('grayscale-img').value;
+    var string = "grayscale("+value+"%)";
+    document.getElementById("image").style.filter = string;
+
+    // Safari 6.0 - 9.0
+    document.getElementById("image").style.WebkitFilter = string;  
+}
+
+function hueRotate() {
+    // Standard syntax
+    var value = document.getElementById('rotate-img').value;
+    var string = "hue-rotate("+value+")";
+    document.getElementById("image").style.filter = string;
+
+    // Safari 6.0 - 9.0
+    document.getElementById("image").style.WebkitFilter = string;  
+}
+
+function invert() {
+    // Standard syntax
+    var value = document.getElementById('invert-img').value;
+    var string = "invert("+value+"%)";
+    console.log("value",value);
+    
+    // console.log("string",string);
+    
+   document.getElementById("image").style.filter = string;
+
+    // Safari 6.0 - 9.0
+    document.getElementById("image").style.WebkitFilter = string;
+}
+
+function opacity() {
+    var value = document.getElementById('opacity-img').value;
+    console.log("value",value);
+    var string = "opacity("+value+"%)";
+    console.log("string",string);
+    
+    // Standard syntax
+    document.getElementById("image").style.filter = string;
+
+    // Safari 6.0 - 9.0
+    document.getElementById("image").style.WebkitFilter = string;
+}
+</script>
+</head>
+
+<body>
+    <h2>Change your image easly using several different filters</h2>
+    <form method='post' action='/filter' class='form' enctype='multipart/form-data'>
+        <img id="image" src='./uploads/fullsize/image.jpeg' alt="image" />
+        <div style="margin-top: 2%">
+            <button type='button' class="btn btn-success" onclick="invert()"> Invert</button>
+            <input type="number" id="invert-img" name="quantity" min="1" max="100">                        
+            <button type='button' class="btn btn-danger" onclick="hueRotate()"> Rotate</button>
+            <input type="number" id="rotate-img" name="quantity" min="1" max="360">            
+            <button type='button' class="btn btn-default" onclick="grayscale()"> Greyscale</button>
+            <input type="number" id="grayscale-img" name="quantity" min="1" max="100">
+            <button type='button' class="btn btn-warning" onclick="opacity()"> Opacity</button>
+            <input type="number" id="opacity-img" name="quantity" min="1" max="100">
+            <button type='button' class="btn btn-info"> Posterize</button>
+        </div>
+
+    </form>
+</body>
+
+</html>
