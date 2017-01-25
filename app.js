@@ -30,7 +30,7 @@ app.post('/uploads', function (req, res) {
   uploadForm.parse(req, function (err, fields, files) {
     
     fs.readFile(files.image.path, function (err, data) {
-      var imageName = files.image.name
+      var imageName = "image"
       /// If there's an error
       if (!imageName) {
         console.log("There was an error")
@@ -38,7 +38,6 @@ app.post('/uploads', function (req, res) {
         res.end();
       } else {
         var newPath = __dirname + "/views/uploads/fullsize/" + imageName;
-        var thumbPath = __dirname + "/views/uploads/thumbs/" + imageName;
         // write file to uploads/fullsize folder
         fs.writeFile(newPath, data, function (err) {
           if (err) {

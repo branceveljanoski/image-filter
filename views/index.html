@@ -1,39 +1,43 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
     <title>
-        Image filter 
+        Image filter
     </title>
-<!--<link rel="stylesheet" type="text/css" href="styles.css">-->
-<style>
-body {
-    text-align: center;
-  background-color: #4791D2;
-  margin: 150px; 
-}
-
-</style>
+    <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+    <style>
+        body {
+            text-align: center;
+            background-color: #4291D2;
+            margin: 150px;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Change your image easly using several different filters</p>
-    <h3>Choose image to upload</h3>
+    <h3>Change your image easly using several different filters</h3>
+    <p>Choose image to upload</p>
     <form method='post' action='/uploads' class='form' enctype='multipart/form-data'>
-        <div class="row" style="margin-top: 3%">
+        <div class="row" style="margin-bottom: 2%">
             <div class="col-xs-2 col-xs-offset-5">
-                <input type='file' name='image's/>
+                <input type='file' name='image' />
             </div>
         </div>
-        <div class="row" style="margin-top: 3%">
+        <div class="row" style="margin-top: 2%">
             <div class="col-xs-2 col-xs-offset-5">
-                <input type='submit' class="btn btn-default"/>
+                <input type='submit' class="btn btn-default" />
             </div>
         </div>
     </form>
