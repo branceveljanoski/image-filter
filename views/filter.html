@@ -161,7 +161,6 @@ function blurImage() {
     // Standard syntax
     document.getElementById("image").style.filter = string;
     globalString = string;
-
     // Safari 6.0 - 9.0
     document.getElementById("image").style.WebkitFilter = string;
 }
@@ -181,21 +180,12 @@ function resize() {
     document.getElementById("image").style.WebkitFilter = string;
 }
 
-function prepHref(linkElement) {
-    var myDiv = document.getElementById('imageDiv');
-    var myImage = myDiv.children[0];
-    myImage.style.filter = globalString;
-    console.log(myImage);
-    linkElement.href = myImage.src;
-    
-}
-
 </script>
 </head>
 
 <body>
     <h3>Change your image easly using several different filters</h3>
-    <form method='post' action='/filter' class='form' enctype='multipart/form-data'>
+    <form method='post' action='/filter' class='form'  id ="form1" enctype='multipart/form-data'>
         <div id="imageDiv">
             <img id="image" src='./uploads/fullsize/image' alt="image" />
         </div>
@@ -222,7 +212,6 @@ function prepHref(linkElement) {
             <button type='button' id="buttonId" class="btn btn-info" onclick="resize()"> Resize image</button>
             <input type="number" id="width-img" name="quantity" min="1" max="300">
             <input type="number" id="height-img" name="quantity" min="1" max="300">
-
         </div>
 </body>
 

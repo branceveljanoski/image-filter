@@ -24,3 +24,6 @@ Also you can resize your image or turn it back to original image.
 First you need to install node.js in order to start the application.You can download node.js on this web page. #[Node.js download page](https://nodejs.org/en/download/).
 Then you need to install node_modules requred by this app by typing npm install and node_modules will install automatically.
 Finally you can use this application by typing node app.js and open http://localhost:3000/ on your browser.
+
+
+

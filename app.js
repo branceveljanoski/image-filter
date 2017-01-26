@@ -3,9 +3,13 @@ var express = require('express')
 var app = express()
 var fs = require('fs');
 var ejs = require('ejs');
+var _ = require('lodash');
 var formidable = require('formidable');
+var mmm = require('mmmagic'),
+  Magic = mmm.Magic;
 
-var form = fs.readFileSync(__dirname+'/views/index.html', 'utf8');
+
+var form = fs.readFileSync(__dirname + '/views/index.html', 'utf8');
 const folderPath = __dirname + '/views';
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(folderPath))
@@ -16,11 +20,11 @@ app.get('/', function (req, res) {
 });
 
 // Post files
-app.post('/uploads', function (req, res) {
+app.post('/', function (req, res) {
   console.log("Upload");
   var uploadForm = new formidable.IncomingForm();
   uploadForm.parse(req, function (err, fields, files) {
-    
+
     fs.readFile(files.image.path, function (err, data) {
       var imageName = "image"
       /// If there's an error
@@ -36,18 +40,28 @@ app.post('/uploads', function (req, res) {
             console.log("error");
             throw err;
           }
-          console.log("write file");
-          res.redirect("/filter");
+          var magic = new Magic(mmm.MAGIC_MIME_TYPE | mmm.MAGIC_MIME_ENCODING);
+          magic.detectFile(newPath, function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            if (_.includes(result, 'image')) {
+              res.redirect("/filter");
+
+            }
+            else res.redirect("/");
+          });
+
         });
-      }});
+      }
+    });
   });
 });
 
 // Show files
 app.get('/filter', function (req, res) {
   console.log("get image ");
-  var filter = fs.readFileSync(__dirname+'/views/filter.html', 'utf8');
-  res.render(__dirname+'/views/filter.html',{user:req.params.user});
+  var filter = fs.readFileSync(__dirname + '/views/filter.html', 'utf8');
+  res.render(__dirname + '/views/filter.html', { user: req.params.user });
 });
 
 app.listen(3000, function () {
