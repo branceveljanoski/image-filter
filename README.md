@@ -29,3 +29,12 @@ Finally you can use this application by typing node app.js and open http://local
 
 User opens http://localhost:3000/ and web server in the background renders the index.html file where he can upload image to add filters on it. Server is running and waits for file to be uploaded. User uploads file and server reads that file add own name to it and store the file. Then it checks if the file is image and if the uploaded file is not image, server redirects user to the start page to upload file again. If the file uploaded is image , server redirects user to http://localhost:3000/filter and renders filter.html file where image uploaded image is shown and user can add filters on it.
 User can enter numbers, which are the values for filtering options described at the beggining of document. When user enter number and click some of the filter buttons, in the background javascript function is called to add the selected filter on image. That function hides the original image from the filter.html page, create a canvas Image where original image is added, selected filter is added on that image and that image is shown on filter.html page. So the canvas has the filtered image which is not stored anywhere else but only is created in that canvas. When user clicks on "Download filtered image", the filtered image is downloaded from that canvas. Download begins and user get the filtered image.
+
+
+### Seqence Diagram
+
+![screen shot 2017-01-27 at 22 48 25](https://cloud.githubusercontent.com/assets/22520841/22388899/52f55160-e4e3-11e6-8d71-e0c5b725ad13.png)
+
+### Activity Diagram
+
+![screen shot 2017-01-27 at 22 48 33](https://cloud.githubusercontent.com/assets/22520841/22388895/512c343e-e4e3-11e6-890e-dba5cd41f957.png)
