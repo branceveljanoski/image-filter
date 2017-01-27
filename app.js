@@ -61,7 +61,23 @@ app.post('/', function (req, res) {
 app.get('/filter', function (req, res) {
   console.log("get image ");
   var filter = fs.readFileSync(__dirname + '/views/filter.html', 'utf8');
-  res.render(__dirname + '/views/filter.html', { user: req.params.user });
+  res.send(filter);
+});
+
+app.post('/filter', function (req, res) {
+  console.log("post");
+  console.log("req",req.files);
+      var imageName = "image"
+        var newPath = __dirname + "/views/uploads/fullsize/" + imageName;
+        // write file to uploads/fullsize folder
+        fs.writeFile(newPath, data, function (err) {
+          if (err) {
+            console.log("error");
+            throw err;
+          }
+              res.render(__dirname + '/views/filter.html', { user: req.params.user });
+
+          });
 });
 
 app.listen(3000, function () {

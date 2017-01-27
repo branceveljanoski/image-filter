@@ -23,169 +23,134 @@
             background-color: #4791D2;
             margin: 120px;
         }
+        a {
+            font-style: bold;
+            color: black;
+        }
     </style>
 
     <script>
 
-        var globalString;
+              var globalString;
 
 function original() {
-    // Standard syntax
-    document.getElementById("image").style.filter = "none";
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = "none";
+    document.getElementById("image").style.display = "none";      
+    var string = "none";  
+    document.getElementById("image").style.filter = string;
+    drawCanvas(string);         
 }
 function grayscale() {
-    // Standard syntax
+    document.getElementById("image").style.display = "none";    
     var value = document.getElementById('grayscale-img').value;
     var string = "grayscale("+value+"%)";
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;  
+    drawCanvas(string);     
 }
 
 function hueRotate() {
-    // Standard syntax
+    document.getElementById("image").style.display = "none";
     var value = document.getElementById('hue-rotate-img').value;
     var string = "hue-rotate("+value+"deg)";
-    console.log("value",value);
-    console.log("value",string);
-    
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;  
+    drawCanvas(string); 
 }
 
 function invert() {
-    // Standard syntax
+    document.getElementById("image").style.display = "none";
     var value = document.getElementById('invert-img').value;
     var string = "invert("+value+"%)";
-    console.log("value",value);
-    
-    // console.log("string",string);
-    
-   document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    document.getElementById("image").style.filter = string;
+    drawCanvas(string); 
 }
 
 function opacity() {
+    document.getElementById("image").style.display = "none";                    
     var value = document.getElementById('opacity-img').value;
-    console.log("value",value);
     var string = "opacity("+value+"%)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);       
 }
 
 function brightness() {
+    document.getElementById("image").style.display = "none";                
     var value = document.getElementById('bright-img').value;
-    console.log("value",value);
     var string = "brightness("+value+"%)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);        
 }
 function contrast() {
+    document.getElementById("image").style.display = "none";            
     var value = document.getElementById('contrast-img').value;
-    console.log("value",value);
     var string = "contrast("+value+"%)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);        
 }
 
 function saturate() {
+    document.getElementById("image").style.display = "none";        
     var value = document.getElementById('saturate-img').value;
-    console.log("value",value);
     var string = "saturate("+value+"%)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);    
 }
 
 function sepia() {
+    document.getElementById("image").style.display = "none";    
     var value = document.getElementById('sepia-img').value;
-    console.log("value",value);
     var string = "sepia("+value+"%)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    
-    globalString = string;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);    
 }
+
 function blurImage() {
+    document.getElementById("image").style.display = "none";
     var value = document.getElementById('blur-img').value;
-    console.log("value",value);
     var string = "blur("+value+"px)";
-    console.log("string",string);
-    
-    // Standard syntax
     document.getElementById("image").style.filter = string;
-    globalString = string;
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
+    drawCanvas(string);
 }
 
-function resize() {
+function resizeImage() {       
     var width = document.getElementById('width-img').value;
-    var height = document.getElementById('height-img').value;   
+    var height = document.getElementById('height-img').value;
 
     var string = width+"%";
     var string1 = height+"%";
-    
+
     // Standard syntax
     document.getElementById("image").style.width = string;
     document.getElementById("image").style.height = string1;
-
-    // Safari 6.0 - 9.0
-    document.getElementById("image").style.WebkitFilter = string;
 }
-
+function drawCanvas(filter) {
+        var img = new Image();
+        img.crossOrigin = "";
+        img.onload = draw; img.src= "./uploads/fullsize/image";
+        function  draw() {
+        var canvas = document.querySelector("canvas"),
+        ctx = canvas.getContext("2d");
+        canvas.width = this.width;
+        canvas.height = this.height;
+        ctx.filter = filter;
+        ctx.drawImage(this, 0, 0);
+        document.querySelector("img").src = canvas.toDataURL("image/jpeg",1.0);
+    }
+    document.getElementById('canvas').style.display="inline";
+    function downloadCanvas(link, canvasId, filename) {
+        link.href = document.getElementById(canvasId).toDataURL();
+        link.download = filename;
+    }
+    document.getElementById('download').addEventListener('click', function() {
+        downloadCanvas(this, 'canvas', 'image.jpg');
+        }, false);
+}
+      
 </script>
 </head>
 
 <body>
     <h3>Change your image easly using several different filters</h3>
-    <form method='post' action='/filter' class='form'  id ="form1" enctype='multipart/form-data'>
+    <form method='post' action='/filter' class='filter' id="form1" enctype='multipart/form-data'>
+        <canvas id="canvas" width="578" height="200" style="display:none"></canvas>
         <div id="imageDiv">
             <img id="image" src='./uploads/fullsize/image' alt="image" />
         </div>
@@ -209,9 +174,11 @@ function resize() {
             <input type="number" id="saturate-img" name="quantity" min="1" max="100">
             <button type='button' id="buttonId" class="btn btn-info" onclick="sepia()"> Sepia</button>
             <input type="number" id="sepia-img" name="quantity" min="1" max="100">
-            <button type='button' id="buttonId" class="btn btn-info" onclick="resize()"> Resize image</button>
+            <button type='button' id="buttonId" class="btn btn-info" onclick="resizeImage()"> Resize image</button>
             <input type="number" id="width-img" name="quantity" min="1" max="300">
             <input type="number" id="height-img" name="quantity" min="1" max="300">
+            <br>
+            <a id="download">Download filtered image</a>
         </div>
 </body>
 
